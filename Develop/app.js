@@ -55,7 +55,7 @@ let questions = [
         when: answers => answers.role == 'Intern',
 
         type: "input",
-        message: "What is your school?",
+        message: "What is your schoolName?",
         name: "school"
     }
 ];
