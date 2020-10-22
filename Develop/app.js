@@ -76,6 +76,39 @@ async function init() {
 // file write 
 const filecreation = util.promisify(fs.writeFile);
 
+function generateInstance(instance) {
+    let employ = new Employee(instance.name, instance.id, instance.email);
+    switch (instance.role.toLowerCase()) {
+        case 'engineer':
+            employ = new Engineer(instance.name, instance.id, instance.email, instance.github)
+            break;
+        case 'manager':
+            employ = new Manager(instance.name, instance.id, instance.email, instance.office)
+            break;
+        case 'intern':
+            employ = new Intern(instance.name, instance.id, instance.email, instance.school)
+            break;
+        default:
+            employ = new Employee(instance.name, instance.id, instance.email);
+            break;
+
+    }
+    employees.push(employ)
+   // console.log(employ, employees)
+    inquirer.prompt({
+        type: "confirm",
+        message: "do you want to add another one?",
+        name: "addAnother"
+    }).then(function (answers) {
+        if (answers.addAnother) {
+            init()
+        } else {
+            const html = render(employees);
+            //console.log(html);
+            filecreation(outputPath, html);
+        }
+    })
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
