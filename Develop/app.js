@@ -61,6 +61,20 @@ let questions = [
 ];
 
 
+
+// creating the function for Int
+async function init() {
+
+    inquirer.prompt(questions)
+    .then(res => {
+        generateInstance(res)
+        //console.log(data)
+        //   filecreation('./templates/team.html', html);
+    });
+
+}
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
