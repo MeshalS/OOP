@@ -16,6 +16,51 @@ const Employee = require("./lib/Employee");
 
 const employees = [];
 
+
+let questions = [
+    {
+        type: "list",
+        message: "What is the employee role?",
+        choices: ['Engineer', 'Manager', 'Intern'],
+        name: "role"
+
+    },
+    {
+        type: "input",
+        message: "What is the employee name?",
+        name: "name"
+    }, {
+        type: "input",
+        message: "What is the employee email?",
+        name: "email"
+    },
+    {
+        type: "input",
+        message: "What is the employee id?",
+        name: "id"
+    },
+    {
+        when: answers => answers.role == 'Engineer',
+        type: "input",
+        message: "What is your github?",
+        name: "github",
+    },
+    {
+        when: answers => answers.role == 'Manager',
+        type: "input",
+        message: "What is your office number?",
+        name: "office"
+    },
+    {
+        when: answers => answers.role == 'Intern',
+
+        type: "input",
+        message: "What is your school?",
+        name: "school"
+    }
+];
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
